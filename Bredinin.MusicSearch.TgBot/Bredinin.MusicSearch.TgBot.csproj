@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="ffmpeg.exe" />
     <None Remove="ffplay.exe" />
     <None Remove="ffprobe.exe" />
     <None Remove="yt-dlp.exe" />
@@ -38,6 +39,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bredinin.MusicSearchEngine.TgBot.Services\Bredinin.MusicSearchEngine.TgBot.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ffmpeg.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
