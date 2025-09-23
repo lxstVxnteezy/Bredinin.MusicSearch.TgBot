@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Bredinin.MusicSearch.TgBot/yt-dlp.exe
+/Bredinin.MusicSearch.TgBot/ffprobe.exe
+/Bredinin.MusicSearch.TgBot/ffplay.exe
+/ffplay.exe
+/ffprobe.exe
+/yt-dlp.exe
