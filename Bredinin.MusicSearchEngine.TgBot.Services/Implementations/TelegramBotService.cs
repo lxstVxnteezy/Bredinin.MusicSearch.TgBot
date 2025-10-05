@@ -1,9 +1,9 @@
-﻿using Bredinin.MusicSearch.TgBot.Models;
-using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
+﻿using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot;
 using Microsoft.Extensions.Options;
+using Bredinin.MusicSearch.TgBot.Models.Entities;
 
 namespace Bredinin.MusicSearchEngine.TgBot.Services
 {
@@ -19,7 +19,7 @@ namespace Bredinin.MusicSearchEngine.TgBot.Services
         {
             var receiverOptions = new ReceiverOptions
             {
-                AllowedUpdates = Array.Empty<UpdateType>()
+                AllowedUpdates = []
             };
 
             _botClient.StartReceiving(

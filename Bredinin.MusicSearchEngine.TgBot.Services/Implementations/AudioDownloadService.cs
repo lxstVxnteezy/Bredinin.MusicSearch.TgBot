@@ -1,8 +1,8 @@
-﻿using Bredinin.MusicSearch.TgBot.Models;
-using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
+﻿using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
 using YoutubeDLSharp.Options;
 using YoutubeDLSharp;
 using Microsoft.Extensions.Options;
+using Bredinin.MusicSearch.TgBot.Models.Entities;
 
 namespace Bredinin.MusicSearchEngine.TgBot.Services
 {
@@ -31,10 +31,14 @@ namespace Bredinin.MusicSearchEngine.TgBot.Services
 
                 string? title = null;
                 string? thumbnailUrl = null;
+                string? artist = null;
+                string? album = null;
 
                 if (metadataResult.Success && metadataResult.Data is { } data)
                 {
                     title = data.Title;
+                    artist = data.Artist;
+                    album = data.Album;
                     thumbnailUrl = data.Thumbnail;
                 }
 
