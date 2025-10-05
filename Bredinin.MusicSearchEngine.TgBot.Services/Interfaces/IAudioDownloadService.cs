@@ -1,4 +1,4 @@
-﻿using Bredinin.MusicSearch.TgBot.Models;
+﻿using Bredinin.MusicSearch.TgBot.Models.Entities;
 
 namespace Bredinin.MusicSearchEngine.TgBot.Services.Interfaces
 {

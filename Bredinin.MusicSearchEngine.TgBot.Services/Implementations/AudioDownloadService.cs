@@ -1,21 +1,24 @@
-﻿using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
-using YoutubeDLSharp.Options;
-using YoutubeDLSharp;
+﻿using Bredinin.MusicSearch.TgBot.Models.Entities;
+using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
 using Microsoft.Extensions.Options;
-using Bredinin.MusicSearch.TgBot.Models.Entities;
+using YoutubeDLSharp;
+using YoutubeDLSharp.Options;
 
-namespace Bredinin.MusicSearchEngine.TgBot.Services
+namespace Bredinin.MusicSearchEngine.TgBot.Services.Implementations
 {
     public class AudioDownloadService : IAudioDownloadService
     {
         private readonly YoutubeDL _ytdl;
         private readonly string _downloadFolder;
 
-        public AudioDownloadService(IOptions<DownloadSettings> downloadOptions, YoutubeDL ytdl)
+        public AudioDownloadService(
+            IOptions<DownloadSettings> downloadOptions,
+            YoutubeDL ytdl)
         {
             _ytdl = ytdl;
 
-            _downloadFolder = Path.Combine(AppContext.BaseDirectory, downloadOptions.Value.DownloadPath);
+            _downloadFolder = Path.Combine
+                (AppContext.BaseDirectory, downloadOptions.Value.DownloadPath);
 
             Directory.CreateDirectory(_downloadFolder);
         }
@@ -24,28 +27,20 @@ namespace Bredinin.MusicSearchEngine.TgBot.Services
         {
             try
             {
-                var metadataResult = await _ytdl.RunVideoDataFetch(url, overrideOptions: new OptionSet
-                {
-                    SkipDownload = true
-                }, ct: cancellationToken);
-
-                string? title = null;
-                string? thumbnailUrl = null;
-                string? artist = null;
-                string? album = null;
-
-                if (metadataResult.Success && metadataResult.Data is { } data)
-                {
-                    title = data.Title;
-                    artist = data.Artist;
-                    album = data.Album;
-                    thumbnailUrl = data.Thumbnail;
-                }
-
                 var safeFileName = $"{Guid.NewGuid()}.m4a";
+
                 var outputPath = Path.Combine(_downloadFolder, safeFileName);
 
-                var result = await _ytdl.RunAudioDownload(
+                var metadataTask = _ytdl.RunVideoDataFetch(
+                    url,
+                    overrideOptions: new OptionSet
+                    {
+                        SkipDownload = true
+                    },
+                    ct: cancellationToken
+                );
+
+                var audioTask = _ytdl.RunAudioDownload(
                     url,
                     AudioConversionFormat.M4a,
                     cancellationToken,
@@ -53,26 +48,39 @@ namespace Bredinin.MusicSearchEngine.TgBot.Services
                     {
                         Output = outputPath,
                         ExtractAudio = true,
-                    });
+                    }
+                );
 
+                await Task.WhenAll(metadataTask, audioTask);
 
-                if (!result.Success || string.IsNullOrWhiteSpace(result.Data))
+                var metadataResult = metadataTask.Result;
+                var audioResult = audioTask.Result;
+
+                if (!metadataResult.Success)
                 {
                     return new DownloadResult
                     {
-                        Success = false,
-                        ErrorMessage = result.ErrorOutput?.FirstOrDefault()
+                        Success = metadataResult.Success,
+                        ErrorMessage = metadataResult.ErrorOutput?.FirstOrDefault()
                     };
                 }
+
+                if (!audioResult.Success || string.IsNullOrWhiteSpace(audioResult.Data))
+                    return new DownloadResult
+                    {
+                        Success = false,
+                        ErrorMessage = audioResult.ErrorOutput?.FirstOrDefault()
+                    };
 
                 return new DownloadResult
                 {
                     Success = true,
                     FilePath = outputPath,
-                    Title = title,
-                    ThumbnailUrl = thumbnailUrl
+                    Title = metadataResult.Data.Title,
+                    ThumbnailUrl = metadataResult.Data.Thumbnail
                 };
             }
+
             catch (Exception ex)
             {
                 return new DownloadResult

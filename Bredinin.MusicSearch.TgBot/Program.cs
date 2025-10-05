@@ -1,5 +1,5 @@
 ﻿using Bredinin.MusicSearch.TgBot;
-using Bredinin.MusicSearch.TgBot.Models;
+using Bredinin.MusicSearch.TgBot.Models.Entities;
 using Bredinin.MusicSearchEngine.TgBot.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

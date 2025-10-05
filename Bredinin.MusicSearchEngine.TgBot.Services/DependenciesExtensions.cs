@@ -1,5 +1,8 @@
-﻿using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
+﻿using Bredinin.MusicSearch.TgBot.Models.Entities;
+using Bredinin.MusicSearchEngine.TgBot.Services.Implementations;
+using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Telegram.Bot.Polling;
 using YoutubeDLSharp;
 
@@ -13,10 +16,13 @@ namespace Bredinin.MusicSearchEngine.TgBot.Services
             
             services.AddSingleton<ITelegramBotService, TelegramBotService>();
             
-            services.AddScoped(_ =>
+            services.AddScoped(sp =>
             {
+                var settings = sp.GetRequiredService<IOptions<DownloadSettings>>().Value;
+
                 var ytdl = new YoutubeDL();
-                ytdl.YoutubeDLPath = "yt-dlp.exe";
+             
+                ytdl.YoutubeDLPath = settings.YoutubeDlPath;
 
                 return ytdl;
             });

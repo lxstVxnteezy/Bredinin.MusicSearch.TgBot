@@ -1,10 +1,10 @@
 ﻿using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
+using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
-using Telegram.Bot;
 
-namespace Bredinin.MusicSearchEngine.TgBot.Services
+namespace Bredinin.MusicSearchEngine.TgBot.Services.Implementations
 {
     public class UpdateHandler(IAudioDownloadService downloadService) : IUpdateHandler
     {

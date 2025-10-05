@@ -1,4 +1,4 @@
-﻿namespace Bredinin.MusicSearch.TgBot.Models;
+﻿namespace Bredinin.MusicSearch.TgBot.Models.Entities;
 
 public class DownloadSettings
 {
