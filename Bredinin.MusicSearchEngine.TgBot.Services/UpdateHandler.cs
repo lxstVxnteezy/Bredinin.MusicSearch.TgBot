@@ -4,7 +4,7 @@ using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 
-namespace Bredinin.MusicSearchEngine.TgBot.Services.Implementations;
+namespace Bredinin.MusicSearchEngine.TgBot.Services;
 
 public class UpdateHandler(DownloadService downloadStrategy) : IUpdateHandler
 {
@@ -146,9 +146,5 @@ public class UpdateHandler(DownloadService downloadStrategy) : IUpdateHandler
         return Task.CompletedTask;
     }
 
-    private bool IsValidUrl(string text)
-    {
-        return Uri.TryCreate(text, UriKind.Absolute, out var uri) &&
-               (uri.Host.Contains("youtube.com") || uri.Host.Contains("youtu.be"));
-    }
+    private bool IsValidUrl(string text) => Uri.TryCreate(text, UriKind.Absolute, out _);
 }

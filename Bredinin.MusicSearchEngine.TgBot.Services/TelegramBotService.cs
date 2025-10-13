@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 
-namespace Bredinin.MusicSearchEngine.TgBot.Services.Implementations;
+namespace Bredinin.MusicSearchEngine.TgBot.Services;
 
 public class TelegramBotService(
     IOptions<TelegramBotSettings> botOptions,
@@ -33,8 +33,5 @@ public class TelegramBotService(
         Console.WriteLine($"Бот @{me.Username} запущен!");
     }
 
-    public Task StopAsync(CancellationToken cancellationToken = default)
-    {
-        return Task.CompletedTask;
-    }
+    public Task StopAsync(CancellationToken cancellationToken = default) {return Task.CompletedTask; }
 }
