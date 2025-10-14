@@ -13,30 +13,32 @@ public class UpdateHandler(DownloadService downloadStrategy) : IUpdateHandler
         Update update,
         CancellationToken cancellationToken)
     {
-        try
+        _ = Task.Run(async () =>
         {
-            if (update.Message is not { } message || message.Text is not { } messageText)
-                return;
+            try
+            {
+                if (update.Message is not { } message || message.Text is not { } messageText)
+                    return;
 
-            var chatId = message.Chat.Id;
+                var chatId = message.Chat.Id;
 
-            if (messageText.StartsWith("/"))
-                await HandleCommandAsync(botClient, message, cancellationToken);
-
-            if (IsValidUrl(messageText))
-                await HandleAudioDownloadAsync(botClient, message, messageText, cancellationToken);
-
-            await botClient.SendMessage(
-                chatId,
-                "🎵 Привет! Отправь мне ссылку и я скачаю аудио.\n\n" +
-                "Команды:\n/help - справка",
-                cancellationToken: cancellationToken);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"{ex.Message}");
-        }
+                if (messageText.StartsWith("/"))
+                    await HandleCommandAsync(botClient, message, cancellationToken);
+                else if (IsValidUrl(messageText))
+                    await HandleAudioDownloadAsync(botClient, message, messageText, cancellationToken);
+                else
+                    await botClient.SendMessage(
+                        chatId,
+                        "🎵 Привет! Отправь мне ссылку и я скачаю аудио.\n\nКоманды:\n/help - справка",
+                        cancellationToken: cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+        }, cancellationToken);
     }
+
 
     private async Task HandleCommandAsync(ITelegramBotClient botClient, Message message,
         CancellationToken cancellationToken)
