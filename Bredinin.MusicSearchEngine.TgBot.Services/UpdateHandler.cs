@@ -8,7 +8,7 @@ namespace Bredinin.MusicSearchEngine.TgBot.Services;
 
 public class UpdateHandler(DownloadService downloadStrategy) : IUpdateHandler
 {
-    public async Task HandleUpdateAsync(
+    public Task HandleUpdateAsync(
         ITelegramBotClient botClient,
         Update update,
         CancellationToken cancellationToken)
@@ -37,6 +37,8 @@ public class UpdateHandler(DownloadService downloadStrategy) : IUpdateHandler
                 Console.WriteLine($"Ошибка: {ex.Message}");
             }
         }, cancellationToken);
+       
+        return Task.CompletedTask;
     }
 
 
