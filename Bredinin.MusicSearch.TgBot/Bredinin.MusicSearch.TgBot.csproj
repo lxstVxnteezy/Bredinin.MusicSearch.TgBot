@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bredinin.MusicSearchEngine.TgBot.Services\Bredinin.MusicSearchEngine.TgBot.Services.csproj" />
+    <ProjectReference Include="..\Bredinin.MusicSearch.TgBot.Core\Bredinin.MusicSearch.TgBot.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

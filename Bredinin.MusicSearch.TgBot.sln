@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bredinin.MusicSearch.TgBot"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bredinin.MusicSearch.TgBot.Models", "Bredinin.MusicSearch.TgBot.Models\Bredinin.MusicSearch.TgBot.Models.csproj", "{72A8F9C7-D964-478E-B393-F7C5640D8B1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bredinin.MusicSearchEngine.TgBot.Services", "Bredinin.MusicSearchEngine.TgBot.Services\Bredinin.MusicSearchEngine.TgBot.Services.csproj", "{21E5D17D-0D3A-4579-9116-2A1370DE57DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bredinin.MusicSearch.TgBot.Core", "Bredinin.MusicSearch.TgBot.Core\Bredinin.MusicSearch.TgBot.Core.csproj", "{21E5D17D-0D3A-4579-9116-2A1370DE57DD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{501B48A9-6CC5-4554-90EF-CD937CA623C4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{501B48A9-6CC5-4554-90EF-CD937CA623C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

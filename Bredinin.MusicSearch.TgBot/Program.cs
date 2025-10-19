@@ -1,6 +1,6 @@
 ﻿using Bredinin.MusicSearch.TgBot;
+using Bredinin.MusicSearch.TgBot.Core;
 using Bredinin.MusicSearch.TgBot.Models.Entities;
-using Bredinin.MusicSearchEngine.TgBot.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -18,6 +18,5 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddHostedService<BotBackgroundService>();
     })
     .Build();
-
 
 await host.RunAsync();

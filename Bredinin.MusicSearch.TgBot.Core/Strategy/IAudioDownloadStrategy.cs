@@ -1,6 +1,6 @@
 ﻿using Bredinin.MusicSearch.TgBot.Models.Entities;
 
-namespace Bredinin.MusicSearchEngine.TgBot.Services.Strategy;
+namespace Bredinin.MusicSearch.TgBot.Core.Strategy;
 
 public interface IAudioDownloadStrategy
 {

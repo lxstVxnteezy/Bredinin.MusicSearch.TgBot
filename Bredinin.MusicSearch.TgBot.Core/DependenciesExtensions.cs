@@ -1,12 +1,12 @@
-﻿using Bredinin.MusicSearch.TgBot.Models.Entities;
-using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
-using Bredinin.MusicSearchEngine.TgBot.Services.Strategy;
+﻿using Bredinin.MusicSearch.TgBot.Core.Interfaces;
+using Bredinin.MusicSearch.TgBot.Core.Strategy;
+using Bredinin.MusicSearch.TgBot.Models.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Telegram.Bot.Polling;
 using YoutubeDLSharp;
 
-namespace Bredinin.MusicSearchEngine.TgBot.Services;
+namespace Bredinin.MusicSearch.TgBot.Core;
 
 public static class DependenciesExtensions
 {

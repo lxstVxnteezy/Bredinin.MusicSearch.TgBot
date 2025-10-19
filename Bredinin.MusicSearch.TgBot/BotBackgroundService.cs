@@ -1,4 +1,4 @@
-﻿using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
+﻿using Bredinin.MusicSearch.TgBot.Core.Interfaces;
 using Microsoft.Extensions.Hosting;
 
 namespace Bredinin.MusicSearch.TgBot;

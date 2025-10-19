@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using YoutubeDLSharp;
 using YoutubeDLSharp.Options;
 
-namespace Bredinin.MusicSearchEngine.TgBot.Services.Strategy;
+namespace Bredinin.MusicSearch.TgBot.Core.Strategy;
 
 public class YoutubeDownloadStrategy : IAudioDownloadStrategy
 {

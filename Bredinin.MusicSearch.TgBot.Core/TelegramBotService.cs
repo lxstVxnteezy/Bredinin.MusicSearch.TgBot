@@ -1,10 +1,10 @@
-﻿using Bredinin.MusicSearch.TgBot.Models.Entities;
-using Bredinin.MusicSearchEngine.TgBot.Services.Interfaces;
+﻿using Bredinin.MusicSearch.TgBot.Core.Interfaces;
+using Bredinin.MusicSearch.TgBot.Models.Entities;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 
-namespace Bredinin.MusicSearchEngine.TgBot.Services;
+namespace Bredinin.MusicSearch.TgBot.Core;
 
 public class TelegramBotService(
     IOptions<TelegramBotSettings> botOptions,
